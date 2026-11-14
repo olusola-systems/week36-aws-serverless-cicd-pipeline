@@ -18,6 +18,10 @@ phases:
       - cd ..
       - echo "Lambda deployment package created."
 
+      - echo "Deploying application to AWS Lambda..."
+      - aws lambda update-function-code --function-name week36-serverless-task-processor --zip-file fileb://deployment.zip --region us-east-1
+      - echo "Lambda deployment command completed."
+
 artifacts:
   files:
     - deployment.zip
