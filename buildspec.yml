@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+
+  build:
+    commands:
+      - echo "Running unit tests..."
+      - python3 -m unittest discover -s tests -v
+
+  post_build:
+    commands:
+      - echo "Packaging Lambda application..."
+      - cd lambda
+      - zip -j ../deployment.zip lambda_app.py
+      - cd ..
+      - echo "Lambda deployment package created."
+
+artifacts:
+  files:
+    - deployment.zip
